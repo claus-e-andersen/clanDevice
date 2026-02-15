@@ -13,7 +13,7 @@ openDevice(
   png.res = 600,
   png.bg = "white",
   png.family = "arial",
-  png.type = c("windows", "cairo", "cairo-png")[1],
+  png.type = c("windows", "cairo", "cairo-png")[2],
   pdf.inch.fac = 2.54/1.2,
   pdf.width = 29.7/pdf.inch.fac,
   pdf.height = 21/pdf.inch.fac,
