@@ -4,7 +4,8 @@ R package for making reports in pdf, png or postscript (ps) format.
 All plots produced between openDevice and closeDevice will be output to
 the file(s) named in the call to openDevice. Choosing the type="none"
 in the call to openDevice redirects the output to the graphical 
-window.
+window. The closeDevice is essentially just a dev.off() call. closeDeviceAll()
+closes all devices.
 
 When choosing type="png"" (or "png.linux"") all plots are in separate files
 numbered junk001.png, junk002.png, junk003.png, etc. if "junk"
@@ -21,7 +22,8 @@ for automated report making.
 
 Many graphical parameters can be changed in the call to openDevice.
 
-The system of clanDevice and txtplot (clanLattice) has been used by the author for more than 10 years. 
+The report generating tools provided by txtplot (clanLattice) and the code now (2026) implemented 
+in clanDevice have been used by the author since 2006! 
 
 Side effect: a variable called:
 
