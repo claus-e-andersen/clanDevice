@@ -8,9 +8,7 @@
 #' @param png.width = date frame with data (df.NIST.estar.SP)
 #' @param png.height = rule for approx: 1=no extrapolation, 2=use nearest value for extrapolation
 #' @details Notes:
-#' The  MSP's are in units of MeV pr. g/cm2.
-#' The I is in eV
-#' The density (rho) is in g/cm3
+#' The png.linux is without the restoreConsole parameter (only available on windows).
 #' @export
 openDevice <- function(grand.plotfilename="junk", type="pdf",
                        png.fac = 1.5,
@@ -163,3 +161,19 @@ closeDeviceAll <- function(){
   assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
 } # end closeDeviceAll
 
+
+
+#################################################
+#' @title demo.clanDevice
+#' @description  Demonstration of how to use the clanDevice package
+#'
+#' @details Notes:
+#' Make a pdf-repost with three plote
+#' @export
+demo.clanDevice <- function(){
+clanDevice::openDevice("junk",type="pdf")
+  plot(1:10)
+  plot(1:20)
+  plot(1:30)
+clanDevice::closeDevice()
+}

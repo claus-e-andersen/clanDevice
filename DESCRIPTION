@@ -1,11 +1,15 @@
 Package: clanDevice
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Type: Package
+Title: clanDevice
+Version: 0.1.0
+Date: 2026-02-15
+Author: Claus E. Andersen
+Maintainer: <clan@dtu.dk>
+Description: R package for making reports in pdf-format (or png or postscript).
+License: GPL (>= 3)
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+LazyData: true
+Imports:
 RoxygenNote: 7.3.3
+Depends: 
+    R (>= 4.1)

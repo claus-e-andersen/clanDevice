@@ -2,4 +2,5 @@
 
 export(closeDevice)
 export(closeDeviceAll)
+export(demo.clanDevice)
 export(openDevice)

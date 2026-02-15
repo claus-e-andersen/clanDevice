@@ -38,7 +38,5 @@ Open device for printing a report
 }
 \details{
 Notes:
-The  MSP's are in units of MeV pr. g/cm2.
-The I is in eV
-The density (rho) is in g/cm3
+The png.linux is without the restoreConsole parameter (only available on windows).
 }
