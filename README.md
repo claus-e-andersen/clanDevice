@@ -39,7 +39,7 @@ demo.clanDevice()
 
 ```
 
-Three plotscan be made into a 3-page pdf-report as follows: 
+Three plots can be made into a 3-page pdf-report as follows: 
 ```
 clanDevice::openDevice("junk",type="pdf")
 
