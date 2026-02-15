@@ -3,7 +3,7 @@
 #' @description  Open device for printing a report
 #'
 #' @param grand.plotfilename = "junk"
-#' @param type  ="png", "pdf", "ps", or "none"
+#' @param type  ="png","png.linux", "pdf", "ps", or "none"
 #' @param png.fac = 1
 #' @param png.width = date frame with data (df.NIST.estar.SP)
 #' @param png.height = rule for approx: 1=no extrapolation, 2=use nearest value for extrapolation
@@ -20,6 +20,7 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
                        png.bg = "white",
                        png.family = "arial",
                        png.type = c("windows", "cairo", "cairo-png")[2],
+                       png.restoreConsole = TRUE,
                        pdf.inch.fac = 2.54 / 1.2,
                        pdf.width = 29.7/pdf.inch.fac,
                        pdf.height = 21/pdf.inch.fac,
@@ -29,7 +30,7 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
   # Name: Claus E. Andersen
 
   type <- tolower(type)
-  if(!type %in% c("pdf","png","ps","none")){
+  if(!type %in% c("pdf","png","png.linux","ps","none")){
     cat(paste("openDevice: Unknown type =",type,"??!\n"))
   }
 
@@ -57,7 +58,30 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
     png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
         width = png.width, height = png.height, units = "cm",
         pointsize = png.fac*10,
-        bg = png.bg, res = 600, family = png.family, restoreConsole = TRUE,
+        bg = png.bg, res = png.res, family = png.family, restoreConsole = png.restoreConsole,
+        type = png.type)
+
+    close.device.wanted <- TRUE
+    assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
+    cat(paste("clanDevice:  A png device was opened for output","\nGrand file name =",grand.plotfilename,"\n"))
+  }
+
+  ##########################################
+  # png.linux (one file per plot) No restoreConsole on linux
+  ##########################################
+  if(type %in% c("png.linux")){
+
+    png.fac <- 1.5
+    #png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
+    #    width = png.fac*20, height = png.fac*13, units = "cm",
+    #    pointsize = png.fac*10,
+    #    bg = "white", res = png.res, family = "arial", restoreConsole = TRUE,
+    #    type = c("windows", "cairo", "cairo-png")[1])
+    cat(paste("png.type =",png.type,"\n"))
+    png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
+        width = png.width, height = png.height, units = "cm",
+        pointsize = png.fac*10,
+        bg = png.bg, res = png.res, family = png.family,
         type = png.type)
 
     close.device.wanted <- TRUE

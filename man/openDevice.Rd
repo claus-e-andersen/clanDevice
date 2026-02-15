@@ -14,6 +14,7 @@ openDevice(
   png.bg = "white",
   png.family = "arial",
   png.type = c("windows", "cairo", "cairo-png")[2],
+  png.restoreConsole = TRUE,
   pdf.inch.fac = 2.54/1.2,
   pdf.width = 29.7/pdf.inch.fac,
   pdf.height = 21/pdf.inch.fac,
@@ -24,7 +25,7 @@ openDevice(
 \arguments{
 \item{grand.plotfilename}{= "junk"}
 
-\item{type}{="png", "pdf", "ps", or "none"}
+\item{type}{="png","png.linux", "pdf", "ps", or "none"}
 
 \item{png.fac}{= 1}
 
