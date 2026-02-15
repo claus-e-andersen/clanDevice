@@ -7,9 +7,9 @@ in the call to openDevice redirects the output to the graphical
 window. The closeDevice is essentially just a dev.off() call. closeDeviceAll()
 closes all devices.
 
-When choosing type="png"" (or "png.linux"") all plots are in separate files
-numbered junk001.png, junk002.png, junk003.png, etc. if "junk"
-is the base file name.
+When choosing type="png"" (or "png.linux"") all plots are then output
+to separate files numbered sequentially like junk001.png, junk002.png, 
+junk003.png, etc. if "junk" is the base file name.
 
 To make pages with text (of tables) please use the function called:
 

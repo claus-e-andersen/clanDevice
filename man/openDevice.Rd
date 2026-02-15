@@ -23,7 +23,7 @@ openDevice(
 )
 }
 \arguments{
-\item{grand.plotfilename}{= "junk"}
+\item{grand.plotfilename}{= "junk" (base file name for output)}
 
 \item{type}{="png","png.linux", "pdf", "ps", or "none"}
 

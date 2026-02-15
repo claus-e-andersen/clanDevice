@@ -2,7 +2,7 @@
 #' @title openDevice
 #' @description  Open device for printing a report
 #'
-#' @param grand.plotfilename = "junk"
+#' @param grand.plotfilename = "junk" (base file name for output)
 #' @param type  ="png","png.linux", "pdf", "ps", or "none"
 #' @param png.fac = 1.5 (scaling factor for png)
 #' @param png.width = ng.fac*20 (width)
@@ -20,7 +20,8 @@
 #' @details Notes:
 #' The png.linux is without the restoreConsole parameter (only available on windows).
 #' @export
-openDevice <- function(grand.plotfilename="junk", type="pdf",
+openDevice <- function(grand.plotfilename="junk",
+                       type="pdf",
                        png.fac = 1.5,
                        png.width = png.fac*20,
                        png.height = png.fac*13,
