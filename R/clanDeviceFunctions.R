@@ -172,8 +172,8 @@ closeDeviceAll <- function(){
 #' @export
 demo.clanDevice <- function(){
 clanDevice::openDevice("junk",type="pdf")
-  plot(1:10)
-  plot(1:20)
-  plot(1:30)
+  print(plot(1:10))
+  print(plot(1:20))
+  print(plot(1:30))
 clanDevice::closeDevice()
 }
