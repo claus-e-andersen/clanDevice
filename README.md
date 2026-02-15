@@ -15,9 +15,13 @@ To make pages with text (of tables) please use the function called:
 ```
 txtplot()
 ```
-in the clanLattice package. 
+in the clanLattice package. In particular, take a look at the pdf-files in
+the pdfs folder. Here are examples of using txtplot and clanDevice in production 
+for automated report making.
 
 Many graphical parameters can be changed in the call to openDevice.
+
+The system of clanDevice and txtplot (clanLattice) has been used by the author for more than 10 years. 
 
 Side effect: a variable called:
 
