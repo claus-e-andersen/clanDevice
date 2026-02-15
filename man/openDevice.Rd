@@ -27,11 +27,31 @@ openDevice(
 
 \item{type}{="png","png.linux", "pdf", "ps", or "none"}
 
-\item{png.fac}{= 1}
+\item{png.fac}{= 1.5 (scaling factor for png)}
 
-\item{png.width}{= date frame with data (df.NIST.estar.SP)}
+\item{png.width}{= ng.fac*20 (width)}
 
-\item{png.height}{= rule for approx: 1=no extrapolation, 2=use nearest value for extrapolation}
+\item{png.height}{= png.fac*13 (height)}
+
+\item{png.res}{= 600 (resolution)}
+
+\item{png.bg}{= "white" (lightgray or pink are also good background colors)}
+
+\item{png.family}{= "arial" (font)}
+
+\item{png.type}{= c("windows", "cairo", "cairo-png")[2] on Windows}
+
+\item{png.restoreConsole}{= TRUE on Windows}
+
+\item{pdf.inch.fac}{= 2.54 / 1.2 (scaling factor for pdf)}
+
+\item{pdf.width}{= 9.7/pdf.inch.fac}
+
+\item{pdf.height}{= 21/pdf.inch.fac}
+
+\item{pdf.pointsize}{= 19}
+
+\item{pdf.family}{= "Courier" (font)}
 }
 \description{
 Open device for printing a report

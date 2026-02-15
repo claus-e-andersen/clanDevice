@@ -4,9 +4,19 @@
 #'
 #' @param grand.plotfilename = "junk"
 #' @param type  ="png","png.linux", "pdf", "ps", or "none"
-#' @param png.fac = 1
-#' @param png.width = date frame with data (df.NIST.estar.SP)
-#' @param png.height = rule for approx: 1=no extrapolation, 2=use nearest value for extrapolation
+#' @param png.fac = 1.5 (scaling factor for png)
+#' @param png.width = ng.fac*20 (width)
+#' @param png.height = png.fac*13 (height)
+#' @param png.res = 600 (resolution)
+#' @param png.bg = "white" (lightgray or pink are also good background colors)
+#' @param png.family = "arial" (font)
+#' @param png.type = c("windows", "cairo", "cairo-png")[2] on Windows
+#' @param png.restoreConsole = TRUE on Windows
+#' @param pdf.inch.fac = 2.54 / 1.2 (scaling factor for pdf)
+#' @param pdf.width = 9.7/pdf.inch.fac
+#' @param pdf.height = 21/pdf.inch.fac
+#' @param pdf.pointsize = 19
+#' @param pdf.family = "Courier" (font)
 #' @details Notes:
 #' The png.linux is without the restoreConsole parameter (only available on windows).
 #' @export
@@ -53,7 +63,7 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
     #    bg = "white", res = png.res, family = "arial", restoreConsole = TRUE,
     #    type = c("windows", "cairo", "cairo-png")[1])
     cat(paste("png.type =",png.type,"\n"))
-    png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
+    grDevices::png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
         width = png.width, height = png.height, units = "cm",
         pointsize = png.fac*10,
         bg = png.bg, res = png.res, family = png.family, restoreConsole = png.restoreConsole,
@@ -76,7 +86,7 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
     #    bg = "white", res = png.res, family = "arial", restoreConsole = TRUE,
     #    type = c("windows", "cairo", "cairo-png")[1])
     cat(paste("png.type =",png.type,"\n"))
-    png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
+    grDevices::png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
         width = png.width, height = png.height, units = "cm",
         pointsize = png.fac*10,
         bg = png.bg, res = png.res, family = png.family,
@@ -96,7 +106,7 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
     #pdf(paste(grand.plotfilename,".pdf",sep=""),
     #width = 29.7/inch.fac, height = 21/inch.fac,pointsize=19,family="Courier")
 
-    pdf(paste(grand.plotfilename,".pdf",sep=""),
+    grDevices::pdf(paste(grand.plotfilename,".pdf",sep=""),
         width = pdf.width,
         height = pdf.height,
         pointsize=pdf.pointsize,
@@ -112,7 +122,7 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
   # ps (postscript, one file)
   ##########################################
   if(type %in% c("ps")){
-    postscript(paste(grand.plotfilename,".ps",sep=""),onefile=TRUE)
+    grDevices::postscript(paste(grand.plotfilename,".ps",sep=""),onefile=TRUE)
     close.device.wanted <- TRUE
     assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
     cat(paste("clanDevice:  A ps device was opened for output","\nGrand file name =",grand.plotfilename,"\n"))
@@ -135,7 +145,7 @@ closeDevice <- function(){
   # Close one device with dev.off() if .device.wanted == TRUE
   close.device.wanted <- get("close.device.wanted",envir = .GlobalEnv)
   if(close.device.wanted){
-    dev.off()
+    grDevices::dev.off()
     cat("clanDevice: Device was closed\n")
   } else {
     # do nothing
@@ -155,7 +165,7 @@ closeDevice <- function(){
 #' @export
 closeDeviceAll <- function(){
   # Close ALL device with dev.off()
-  while(length(dev.list())>0){dev.off()}
+  while(length(grDevices::dev.list())>0){grDevices::dev.off()}
   cat("clanDevice: All open devices were closed with dev.off().\n")
   close.device.wanted <- FALSE
   assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
