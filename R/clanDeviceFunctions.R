@@ -12,27 +12,27 @@
 #' The I is in eV
 #' The density (rho) is in g/cm3
 #' @export
-openDevice <- function(grand.plotfilename="junk", type="pdf", 
-                       png.fac = 1.5, 
-                       png.width = png.fac*20, 
-                       png.height = png.fac*13, 
+openDevice <- function(grand.plotfilename="junk", type="pdf",
+                       png.fac = 1.5,
+                       png.width = png.fac*20,
+                       png.height = png.fac*13,
                        png.res = 600,
                        png.bg = "white",
                        png.family = "arial",
-                       png.type = c("windows", "cairo", "cairo-png")[1],
+                       png.type = c("windows", "cairo", "cairo-png")[2],
                        pdf.inch.fac = 2.54 / 1.2,
-                       pdf.width = 29.7/pdf.inch.fac, 
+                       pdf.width = 29.7/pdf.inch.fac,
                        pdf.height = 21/pdf.inch.fac,
                        pdf.pointsize = 19,
-                       pdf.family = "Courier"){ 
+                       pdf.family = "Courier"){
   # Revised: February 15, 2026
   # Name: Claus E. Andersen
-  
+
   type <- tolower(type)
   if(!type %in% c("pdf","png","ps","none")){
     cat(paste("openDevice: Unknown type =",type,"??!\n"))
   }
-  
+
   ##########################################
   # none (no plots to file)
   ##########################################
@@ -41,61 +41,61 @@ openDevice <- function(grand.plotfilename="junk", type="pdf",
     assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
     cat(paste("clanDevice:  No device was opened for output","\n"))
   }
-  
+
   ##########################################
   # png (one file per plot)
   ##########################################
   if(type %in% c("png")){
-    
+
     png.fac <- 1.5
     #png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
-    #    width = png.fac*20, height = png.fac*13, units = "cm", 
+    #    width = png.fac*20, height = png.fac*13, units = "cm",
     #    pointsize = png.fac*10,
     #    bg = "white", res = png.res, family = "arial", restoreConsole = TRUE,
     #    type = c("windows", "cairo", "cairo-png")[1])
-    
+    cat(paste("png.type =",png.type,"\n"))
     png(filename = paste(grand.plotfilename,"%03d.png",sep=""),
-        width = png.width, height = png.height, units = "cm", 
+        width = png.width, height = png.height, units = "cm",
         pointsize = png.fac*10,
         bg = png.bg, res = 600, family = png.family, restoreConsole = TRUE,
         type = png.type)
-    
+
     close.device.wanted <- TRUE
     assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
     cat(paste("clanDevice:  A png device was opened for output","\nGrand file name =",grand.plotfilename,"\n"))
   }
-  
+
   ##########################################
   # pdf (one file)
   ##########################################
   if(type %in% c("pdf")){
-    
+
     #inch.fac <- 2.54 / 1.2
-    #pdf(paste(grand.plotfilename,".pdf",sep=""), 
+    #pdf(paste(grand.plotfilename,".pdf",sep=""),
     #width = 29.7/inch.fac, height = 21/inch.fac,pointsize=19,family="Courier")
-    
-    pdf(paste(grand.plotfilename,".pdf",sep=""), 
-        width = pdf.width, 
+
+    pdf(paste(grand.plotfilename,".pdf",sep=""),
+        width = pdf.width,
         height = pdf.height,
         pointsize=pdf.pointsize,
         family=pdf.family)
-    
-    
+
+
     close.device.wanted <- TRUE
     assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
     cat(paste("clanDevice:  A pdf device was opened for output","\nGrand file name =",grand.plotfilename,"\n"))
   }
-  
+
   ##########################################
   # ps (postscript, one file)
   ##########################################
   if(type %in% c("ps")){
-    postscript(paste(grand.plotfilename,".ps",sep=""),onefile=TRUE) 
+    postscript(paste(grand.plotfilename,".ps",sep=""),onefile=TRUE)
     close.device.wanted <- TRUE
     assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
     cat(paste("clanDevice:  A ps device was opened for output","\nGrand file name =",grand.plotfilename,"\n"))
   }
-  
+
 }# end openDevice
 
 
@@ -120,7 +120,7 @@ closeDevice <- function(){
   }
   close.device.wanted <- FALSE
   assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
-} # end closeDevice 
+} # end closeDevice
 
 #################################################
 #' @title closeDeviceAll
@@ -132,10 +132,10 @@ closeDevice <- function(){
 #' The density (rho) is in g/cm3
 #' @export
 closeDeviceAll <- function(){
-  # Close ALL device with dev.off() 
+  # Close ALL device with dev.off()
   while(length(dev.list())>0){dev.off()}
   cat("clanDevice: All open devices were closed with dev.off().\n")
   close.device.wanted <- FALSE
   assign("close.device.wanted",close.device.wanted,envir=.GlobalEnv)
-} # end closeDeviceAll 
+} # end closeDeviceAll
 
